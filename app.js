@@ -14,13 +14,14 @@ const server = app.listen(3000, () => {
   console.log('listening on port 3000');
 }); //added the const server so it knows to listen to this
 
-io.attach(server); //io-socket. knows to listen for the server connnection to send the messages back and forth
+  io.attach(server); //io-socket. knows to listen for the server connnection to send the messages back and forth
 
-io.on('connection', socket => { // socket => same as function (socket){ } but short hand works for just one thing
+  io.on('connection', socket => { // socket => same as function (socket){ } but short hand works for just one thing
   console.log('a user has connected woo!');
-
-  io.emit('chat message', {for : 'everyone', message : `${socket.id} is here!`});//listening for a chat msg
-
+//handle messag from client
+socket.on('chat message', msg => {
+  io.emit('chat message', {for : 'everyone', message : msg});//listening for a chat msg
+  });
 
   socket.on('disconnect', () => {
     console.log('a user disconnected');
