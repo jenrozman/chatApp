@@ -18,15 +18,19 @@ const server = app.listen(3000, () => {
 
   io.on('connection', socket => { // socket => same as function (socket){ } but short hand works for just one thing
   console.log('a user has connected woo!');
-//handle messag from client
+  io.emit('chat message', { for : 'everyone', message : `${socket.id} is here!`});
+
+//disconnect message
+//io.emit('disconnect message', { for : 'everyone', message : `${socket.id} has left!`});
+
+//handle msg from client
 socket.on('chat message', msg => {
   io.emit('chat message', {for : 'everyone', message : msg});//listening for a chat msg
   });
 
   socket.on('disconnect', () => {
-    console.log('a user disconnected');
-
-    io.emit('disconnect message', `${socket.id} has left the building!`); //dont have to do the for if its just a message
+    console.log('a user disconnected, awh');
+    io.emit('disconnect message', `${socket.id} took off!`); //dont have to do the for if its just a message
   });
 
 });
