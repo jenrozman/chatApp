@@ -1,9 +1,13 @@
 # chatApp
+Chat App for users to talk to eachother.
 
-Clone into your chosen directory
+To run:
+1. Clone into your chosen directory
 
-NPM install grunt and socket
+2. NPM install --save grunt and socket
 
-run node app in the root of your project
+3. Run node app in the root of your project
 
-navigate to localhost:3000
+4. Go to localhost:3000
+
+5. Chat away!
